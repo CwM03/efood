@@ -5,15 +5,17 @@ import logo from '../../assets/images/logo.png'
 
 const HeaderMenu = () => (
   <BgHeader>
-    <p>
-      Restaurantes
-    </p>
-    <Link to="/">
-      <img src={logo} alt="eFood" />
-    </Link>
-    <p>
-      0 produto(s) no carrinho
-    </p>
+    <div className='container'>
+      <Link to="/" style={{ textDecoration: 'none', color: '#E66767' }}>
+        <p>Restaurantes</p>
+      </Link>
+      <Link to="/">
+        <img src={logo} alt="eFood" />
+      </Link>
+      <p>
+        0 produto(s) no carrinho
+      </p>
+    </div>
   </BgHeader>
 )
 

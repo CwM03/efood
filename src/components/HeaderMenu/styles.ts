@@ -6,19 +6,16 @@ export const BgHeader = styled.header`
     background-image: url(${bgHeaderImage});
     width: 100%;
     height: 186px;
-    
-    display: flex;
-    justify-content: space-between
-    align-items: center;
-    
-    img {
-        margin-top: 40px;
-        margin-bottom: 138px;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 70px;
     }
 
     p {
-        margin-top 138px;
         font-weight: bold;
-        font-size: 36px;
+        font-size: 18px;
     }
 `

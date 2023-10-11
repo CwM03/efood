@@ -1,12 +1,16 @@
-import { Container } from './styles'
+import { Container, Item } from './styles'
 
 export type Props = {
   children: JSX.Element
 }
 
 const Menus = ({ children }: Props) => (
-  <Container>
-    <div className="container">{children}</div>
+  <Container className="container">
+    <Item>
+      <li>
+        {children}
+      </li>
+    </Item>
   </Container>
 )
 

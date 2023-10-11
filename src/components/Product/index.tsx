@@ -31,26 +31,48 @@ const Product = ({
     return descricao
   }
 
-  return (
-    <Card>
-      <img src={capa} alt={titulo} />
-      <Infos>
-        <Tag>{`${destacado}`}</Tag>
-        <Tag>{tipo}</Tag>
-      </Infos>
-      <div>
-        <Titulo>{titulo}</Titulo>
-        <Note>
-          {avaliacao}
-          <img src={star} alt="Estrela" />
-        </Note>
-      </div>
-      <Descricao>{getDescricao(descricao)}</Descricao>
-      <SaibaMais>
-        <ButtonLink to={`/menus/${id}`}>Saiba mais</ButtonLink>
-      </SaibaMais>
-    </Card>
-  )
+  if (destacado === true) {
+    return (
+      <Card>
+        <img src={capa} alt={titulo} />
+        <Infos>
+          <Tag>Destaque da semana</Tag>
+          <Tag>{(tipo).charAt(0).toUpperCase() + (tipo).slice(1).toLowerCase()}</Tag>
+        </Infos>
+        <div>
+          <Titulo>{titulo}</Titulo>
+          <Note>
+            {avaliacao}
+            <img src={star} alt="Estrela" />
+          </Note>
+        </div>
+        <Descricao>{getDescricao(descricao)}</Descricao>
+        <SaibaMais>
+          <ButtonLink to={`/menus/${id}`}>Saiba mais</ButtonLink>
+        </SaibaMais>
+      </Card>
+    )
+  } else {
+    return (
+      <Card>
+        <img src={capa} alt={titulo} />
+        <Infos>
+          <Tag>{(tipo).charAt(0).toUpperCase() + (tipo).slice(1).toLowerCase()}</Tag>
+        </Infos>
+        <div>
+          <Titulo>{titulo}</Titulo>
+          <Note>
+            {avaliacao}
+            <img src={star} alt="Estrela" />
+          </Note>
+        </div>
+        <Descricao>{getDescricao(descricao)}</Descricao>
+        <SaibaMais>
+          <ButtonLink to={`/menus/${id}`}>Saiba mais</ButtonLink>
+        </SaibaMais>
+      </Card>
+    )
+  }
 }
 
 export default Product

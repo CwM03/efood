@@ -66,6 +66,7 @@ export const ModalContent = styled.div`
     p {
       font-size: 14px;
       margin-bottom: 16px;
+      margin-right: 32px;
     }
   }
 
