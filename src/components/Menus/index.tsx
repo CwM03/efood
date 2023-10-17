@@ -7,9 +7,7 @@ export type Props = {
 const Menus = ({ children }: Props) => (
   <Container className="container">
     <Item>
-      <li>
-        {children}
-      </li>
+      {children}
     </Item>
   </Container>
 )

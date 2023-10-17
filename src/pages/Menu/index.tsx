@@ -16,6 +16,7 @@ const Menu = () => {
   const [ModalMenuName, setModalMenuName] = useState('')
   const [ModalMenuDescription, setModalMenuDescription] = useState('')
   const [ModalMenuServe, setModalMenuServe] = useState('')
+  const [ModalMenuPrice, setModalMenuPrice] = useState(Number)
 
   const [restaurante, setRestaurante] = useState<Restaurante>()
 
@@ -51,6 +52,7 @@ const Menu = () => {
           setModalMenuName(restaurantes.nome)
           setModalMenuDescription(restaurantes.descricao)
           setModalMenuServe(restaurantes.porcao)
+          setModalMenuPrice(restaurantes.preco)
         }}>
         Adicionar ao carrinho
       </ButtonContainer>
@@ -63,7 +65,11 @@ const Menu = () => {
       <Hero restaurantes={restaurante} />
       <Menus>
         <>
-          {menuItems}
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              {item}
+            </li>
+          ))}
         </>
       </Menus>
       <Modal className={ModalIsOpen ? 'visible' : ''}>
@@ -85,7 +91,7 @@ const Menu = () => {
               <p>{ModalMenuDescription}</p>
               <p>Serve: {ModalMenuServe}</p>
               <ButtonLink to={`/`} className="botton">
-                Adicionar ao carrinho
+                Adicionar ao carrinho - R${(ModalMenuPrice).toFixed(2).replace('.', ',')}
               </ButtonLink>
             </div>
           </div>

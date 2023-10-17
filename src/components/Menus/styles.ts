@@ -2,13 +2,14 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const Container = styled.div`
-  padding: 80px 0;
+  padding: 80px 0 88px 0;
 `
 
 export const Item = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 32px;
+  gap: 32px;
+  padding-bottom: 32px;
 
   li {
     background-color: ${cores.vermelha};
