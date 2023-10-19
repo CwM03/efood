@@ -8,97 +8,92 @@ import Menus from '../../components/Menus'
 import { ButtonContainer, ButtonLink } from '../../components/Button/styles'
 import { Modal, ModalContent } from './styles'
 import fechar from '../../assets/images/close.png'
+import { useGetMenuQuery } from '../../services/api'
 
 const Menu = () => {
   const { id } = useParams()
+  const { data: menu } = useGetMenuQuery(id!)
+
   const [ModalIsOpen, setModalIsOpen] = useState(false)
   const [ModalMenuFoto, setModalMenuFoto] = useState('')
   const [ModalMenuName, setModalMenuName] = useState('')
   const [ModalMenuDescription, setModalMenuDescription] = useState('')
   const [ModalMenuServe, setModalMenuServe] = useState('')
   const [ModalMenuPrice, setModalMenuPrice] = useState(Number)
-
-  const [restaurante, setRestaurante] = useState<Restaurante>()
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setRestaurante(res))
-  }, [id])
-
-  if (!restaurante) {
-    return <h3>Carregando...</h3>
-  }
-
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 130) {
-      return descricao.slice(0, 127) + '...'
-    }
-    return descricao
-  }
   
-  const menuItems = restaurante.cardapio.map((restaurantes) => (
-    <div key={restaurantes.id}>
-      <img src={restaurantes.foto} alt={restaurantes.nome} />
-      <h1>{restaurantes.nome}</h1>
-      <p>{getDescricao(restaurantes.descricao)}</p>
-      <ButtonContainer
-        type="button"
-        title="adicionar ao carrinho"
-        className="botton"
-        onClick={() => {
-          setModalIsOpen(true)
-          setModalMenuFoto(restaurantes.foto)
-          setModalMenuName(restaurantes.nome)
-          setModalMenuDescription(restaurantes.descricao)
-          setModalMenuServe(restaurantes.porcao)
-          setModalMenuPrice(restaurantes.preco)
-        }}>
-        Adicionar ao carrinho
-      </ButtonContainer>
-    </div>
-  ))
-
-  return (
-    <>
-      <HeaderMenu />
-      <Hero restaurantes={restaurante} />
-      <Menus>
-        <>
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              {item}
-            </li>
-          ))}
-        </>
-      </Menus>
-      <Modal className={ModalIsOpen ? 'visible' : ''}>
-        <ModalContent className="container">
-          <header>
-            <img
-              src={fechar}
-              alt="fechar"
-              onClick={() => setModalIsOpen(false)}
-            />
-          </header>
-          <div>
-            <img
-              src={ModalMenuFoto}
-              alt={ModalMenuName}
-            />
+  if (menu) {
+    const getDescricao = (descricao: string) => {
+      if (descricao.length > 130) {
+        return descricao.slice(0, 127) + '...'
+      }
+      return descricao
+    }
+    
+    const menuItems = menu.cardapio.map((restaurantes) => (
+      <div key={restaurantes.id}>
+        <img src={restaurantes.foto} alt={restaurantes.nome} />
+        <h1>{restaurantes.nome}</h1>
+        <p>{getDescricao(restaurantes.descricao)}</p>
+        <ButtonContainer
+          type="button"
+          title="adicionar ao carrinho"
+          className="botton"
+          onClick={() => {
+            setModalIsOpen(true)
+            setModalMenuFoto(restaurantes.foto)
+            setModalMenuName(restaurantes.nome)
+            setModalMenuDescription(restaurantes.descricao)
+            setModalMenuServe(restaurantes.porcao)
+            setModalMenuPrice(restaurantes.preco)
+          }}>
+          Adicionar ao carrinho
+        </ButtonContainer>
+      </div>
+    ))
+    return (
+      <>
+        <HeaderMenu />
+        <Hero restaurantes={menu} />
+        <Menus>
+          <>
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                {item}
+              </li>
+            ))}
+          </>
+        </Menus>
+        <Modal className={ModalIsOpen ? 'visible' : ''}>
+          <ModalContent className="container">
+            <header>
+              <img
+                src={fechar}
+                alt="fechar"
+                onClick={() => setModalIsOpen(false)}
+              />
+            </header>
             <div>
-              <h4>{ModalMenuName}</h4>
-              <p>{ModalMenuDescription}</p>
-              <p>Serve: {ModalMenuServe}</p>
-              <ButtonLink to={`/`} className="botton">
-                Adicionar ao carrinho - R${(ModalMenuPrice).toFixed(2).replace('.', ',')}
-              </ButtonLink>
+              <img
+                src={ModalMenuFoto}
+                alt={ModalMenuName}
+              />
+              <div>
+                <h4>{ModalMenuName}</h4>
+                <p>{ModalMenuDescription}</p>
+                <p>Serve: {ModalMenuServe}</p>
+                <ButtonLink to={`/`} className="botton">
+                  Adicionar ao carrinho - R${(ModalMenuPrice).toFixed(2).replace('.', ',')}
+                </ButtonLink>
+              </div>
             </div>
-          </div>
-        </ModalContent>
-        <div className="overlay" onClick={() => setModalIsOpen(false)}></div>
-      </Modal>
-    </>
+          </ModalContent>
+          <div className="overlay" onClick={() => setModalIsOpen(false)}></div>
+        </Modal>
+      </>
+    )
+  }
+  return (
+    <h3>Carregando...</h3>
   )
 }
 
