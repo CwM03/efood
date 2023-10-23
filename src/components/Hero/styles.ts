@@ -21,7 +21,6 @@ export const Imagem = styled.div`
   }
 
   .container {
-    z-index: 1;
     position: relative;
     padding-top: 24px;
     padding-bottom: 32px;
@@ -30,6 +29,7 @@ export const Imagem = styled.div`
     height: 100%;
     justify-content: space-between;
     color: ${cores.branca};
+    z-index: 1;
 
     h1 {
       font-weight: normal;

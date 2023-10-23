@@ -9,8 +9,8 @@ export type Props = {
 
 const ProductsList = ({ restaurantes }: Props) => {
   return (
-    <Container>
-      <div className="container">
+    <Container className="container">
+      <div>
         <List>
           {restaurantes.map((restaurantes) => (
             <li key={restaurantes.id}>

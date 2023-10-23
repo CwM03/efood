@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Modal = styled.div`
   position: fixed;
@@ -29,6 +29,7 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   background-color: ${cores.vermelha};
   color: ${cores.branca};
+  postion: relative;
 
   max-width: 1024px;
   position: relative;
@@ -40,6 +41,16 @@ export const ModalContent = styled.div`
     height: 280px;
     margin: 0px 24px 32px 32px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      margin: 0px 24px 8px 8px;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 45%;
+      height: 520px;
+      object-fit: cover;
+    }
   }
 
   header {
@@ -73,5 +84,14 @@ export const ModalContent = styled.div`
   .botton {
     background-color: ${cores.branca};
     color: ${cores.vermelha};
+    font-size: 14px;
+    font-weight: bold;
+    border: 0;
+    padding: 4px;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      margin-bottom: 8px;
+      margin-right: 16px;
+    }
   }
 `

@@ -1,8 +1,13 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Container = styled.div`
   padding: 80px 0 88px 0;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 40px 0 40px 0;
+  }
+
 `
 
 export const Item = styled.ul`
@@ -10,6 +15,14 @@ export const Item = styled.ul`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
   padding-bottom: 32px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+  }
 
   li {
     background-color: ${cores.vermelha};
@@ -20,6 +33,14 @@ export const Item = styled.ul`
       width: 300px;
       height: 160px;
       margin: 8px 8px 0 8px;
+
+      @media (max-width: ${breakpoints.desktop}) {
+        width: 92%;
+      }
+
+      @media (max-width: ${breakpoints.tablet}) {
+        width: 94%;
+      }      
     }
   
     h1 {
@@ -39,7 +60,7 @@ export const Item = styled.ul`
       margin: 8px;
       display: flex;
       justify-content: center;
-      width: 92%;
+      width: 94%;
     }
   }
 `

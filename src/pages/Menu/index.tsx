@@ -9,8 +9,16 @@ import { ButtonContainer, ButtonLink } from '../../components/Button/styles'
 import { Modal, ModalContent } from './styles'
 import fechar from '../../assets/images/close.png'
 import { useGetMenuQuery } from '../../services/api'
+import Cart from '../../components/Cart'
+import { useDispatch } from 'react-redux'
 
-const Menu = () => {
+import { add, open } from '../../store/reducers/cart'
+
+type Props = {
+  restaurante: Restaurante
+}
+
+const Menu = ({ restaurante }: Props) => {
   const { id } = useParams()
   const { data: menu } = useGetMenuQuery(id!)
 
@@ -20,6 +28,13 @@ const Menu = () => {
   const [ModalMenuDescription, setModalMenuDescription] = useState('')
   const [ModalMenuServe, setModalMenuServe] = useState('')
   const [ModalMenuPrice, setModalMenuPrice] = useState(Number)
+
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(restaurante))
+    dispatch(open())
+  }
   
   if (menu) {
     const getDescricao = (descricao: string) => {
@@ -53,6 +68,7 @@ const Menu = () => {
     return (
       <>
         <HeaderMenu />
+        <Cart />
         <Hero restaurantes={menu} />
         <Menus>
           <>
@@ -81,9 +97,9 @@ const Menu = () => {
                 <h4>{ModalMenuName}</h4>
                 <p>{ModalMenuDescription}</p>
                 <p>Serve: {ModalMenuServe}</p>
-                <ButtonLink to={`/`} className="botton">
+                <button type='button' className="botton" onClick={() => {addToCart();setModalIsOpen(false)}}>
                   Adicionar ao carrinho - R${(ModalMenuPrice).toFixed(2).replace('.', ',')}
-                </ButtonLink>
+                </button>
               </div>
             </div>
           </ModalContent>
