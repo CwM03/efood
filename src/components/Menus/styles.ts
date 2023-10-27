@@ -6,6 +6,9 @@ export const Container = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 40px 0 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 `
@@ -18,10 +21,17 @@ export const Item = styled.ul`
 
   @media (max-width: ${breakpoints.desktop}) {
     grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
+    width: 50%;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 
   li {
@@ -32,15 +42,7 @@ export const Item = styled.ul`
     img {
       width: 300px;
       height: 160px;
-      margin: 8px 8px 0 8px;
-
-      @media (max-width: ${breakpoints.desktop}) {
-        width: 92%;
-      }
-
-      @media (max-width: ${breakpoints.tablet}) {
-        width: 94%;
-      }      
+      width: 100%;
     }
   
     h1 {
@@ -57,10 +59,10 @@ export const Item = styled.ul`
     .botton {
       background-color: ${cores.branca};
       color: ${cores.vermelha};
-      margin: 8px;
+      padding: 8px;
       display: flex;
       justify-content: center;
-      width: 94%;
+      width: 100%;
     }
   }
 `

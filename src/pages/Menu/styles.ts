@@ -30,26 +30,18 @@ export const ModalContent = styled.div`
   background-color: ${cores.vermelha};
   color: ${cores.branca};
   postion: relative;
-
   max-width: 1024px;
-  position: relative;
   z-index: 1;
 
   div img {
-    display: block;
     width: 280px;
     height: 280px;
-    margin: 0px 24px 32px 32px;
+    margin: 0px 16px 16px 16px;
     object-fit: cover;
 
-    @media (max-width: ${breakpoints.desktop}) {
-      margin: 0px 24px 8px 8px;
-    }
-
-    @media (max-width: ${breakpoints.tablet}) {
-      width: 45%;
-      height: 520px;
-      object-fit: cover;
+    @media (max-width: ${breakpoints.phone}) {
+      width: 100%;
+      margin: 0;
     }
   }
 
@@ -69,9 +61,20 @@ export const ModalContent = styled.div`
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: ${breakpoints.phone}) {
+      display: block;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 16px 16px 16px;
+    }
+
     h4 {
       margin-bottom: 24px;
       font-size: 16px;
+
+      @media (max-width: ${breakpoints.phone}) {
+        margin-top: 8px;
+      }
     }
 
     p {
@@ -88,10 +91,6 @@ export const ModalContent = styled.div`
     font-weight: bold;
     border: 0;
     padding: 4px;
-
-    @media (max-width: ${breakpoints.desktop}) {
-      margin-bottom: 8px;
-      margin-right: 16px;
-    }
+    cursor: pointer;
   }
 `

@@ -1,14 +1,13 @@
-import aaaa from '../../assets/images/pizza.png'
-
-import { Overlay, CartContainer, Sidebar, CartItem, Dump } from './styles'
+import { Overlay, CartContainer, Sidebar, CartItem } from './styles'
 import { ButtonLink } from "../Button/styles"
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
+import { CardapioItem } from '../../pages/Home'
 
 const Cart = () => {
     const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
-
+    
     const dispatch = useDispatch()
 
     const closeCart = () => {
@@ -19,11 +18,14 @@ const Cart = () => {
         dispatch(remove(id))
     }
 
-    const getTotalPrice = () => {
+    const getTotalPrice = (items: CardapioItem[]) => {
         return items.reduce((acumulador, valorAtual) => {
-            return (acumulador += valorAtual.cardapio.preco!)
-        }, 0)
-    }
+            if (valorAtual.preco) {
+                return (acumulador += valorAtual.preco)
+            }
+            return 0
+        }, 0);
+    };
 
     return (
         <CartContainer className={isOpen ? 'is-open' : ''}>
@@ -31,21 +33,21 @@ const Cart = () => {
             <Sidebar>
                 <ul>
                     {items.map((item) => (
-                        <CartItem key={item.cardapio.id}>
-                        <img src={item.cardapio.foto} alt={item.cardapio.nome} />
-                        <div>
-                            <h3>{item.cardapio.nome}</h3>
-                            <span>{(item.cardapio.preco).toFixed(2).replace('.', ',')}</span>
-                        </div>
-                        <Dump>
-                            <button type="button" onClick={() => removeItem(item.id)}></button>
-                        </Dump>
-                    </CartItem>
+                        <CartItem key={item.id}>
+                            <div key={item.id}>
+                                <img src={item.foto} alt={item.foto} />
+                                <div>
+                                    <h3>{item.nome}</h3>
+                                    <span>R${(item.preco).toFixed(2).replace('.', ',')}</span>
+                                    <button type="button" onClick={() => removeItem(item.id)}></button>
+                                </div>
+                            </div>
+                        </CartItem>
                     ))}
                 </ul>
-                <p>Valor total <span>{getTotalPrice()}</span></p>
+                <p>Valor total <span>R${getTotalPrice(items).toFixed(2).replace('.', ',')}</span></p>
                 <ButtonLink to={`/`} className="botton" title="Clique aqui para continuar com a compra" type="button">Continuar com a entrega</ButtonLink>
-            </Sidebar>
+			</Sidebar>
         </CartContainer>
     )
 }

@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { Restaurante } from '../Home'
+import { useState } from 'react'
+import { CardapioItem } from '../Home'
 
 import HeaderMenu from '../../components/HeaderMenu'
 import Hero from '../../components/Hero'
 import Menus from '../../components/Menus'
-import { ButtonContainer, ButtonLink } from '../../components/Button/styles'
+import { ButtonContainer } from '../../components/Button/styles'
 import { Modal, ModalContent } from './styles'
 import fechar from '../../assets/images/close.png'
 import { useGetMenuQuery } from '../../services/api'
@@ -14,32 +14,39 @@ import { useDispatch } from 'react-redux'
 
 import { add, open } from '../../store/reducers/cart'
 
-type Props = {
-  restaurante: Restaurante
-}
-
-const Menu = ({ restaurante }: Props) => {
+const Menu = () => {
   const { id } = useParams()
   const { data: menu } = useGetMenuQuery(id!)
-
-  const [ModalIsOpen, setModalIsOpen] = useState(false)
+  const [ModalIsOpen, setModalIsOpen] = useState(Boolean)
   const [ModalMenuFoto, setModalMenuFoto] = useState('')
   const [ModalMenuName, setModalMenuName] = useState('')
   const [ModalMenuDescription, setModalMenuDescription] = useState('')
   const [ModalMenuServe, setModalMenuServe] = useState('')
   const [ModalMenuPrice, setModalMenuPrice] = useState(Number)
+  const [product, setProduct] = useState<CardapioItem>()
 
   const dispatch = useDispatch()
 
+  const closeModal = () => setModalIsOpen(false)
+  const openModal = (products: CardapioItem) => {
+   	setModalIsOpen(true)
+    setProduct(products)
+	}
+
   const addToCart = () => {
-    dispatch(add(restaurante))
-    dispatch(open())
+    if (product) {
+        dispatch(add(product))
+        closeModal()
+        dispatch(open())
+    } else {
+        alert('Algo deu errado')
+    }
   }
   
   if (menu) {
     const getDescricao = (descricao: string) => {
       if (descricao.length > 130) {
-        return descricao.slice(0, 127) + '...'
+        return descricao.slice(0, 120) + '...'
       }
       return descricao
     }
@@ -54,7 +61,7 @@ const Menu = ({ restaurante }: Props) => {
           title="adicionar ao carrinho"
           className="botton"
           onClick={() => {
-            setModalIsOpen(true)
+            openModal(restaurantes)
             setModalMenuFoto(restaurantes.foto)
             setModalMenuName(restaurantes.nome)
             setModalMenuDescription(restaurantes.descricao)
@@ -85,7 +92,7 @@ const Menu = ({ restaurante }: Props) => {
               <img
                 src={fechar}
                 alt="fechar"
-                onClick={() => setModalIsOpen(false)}
+                onClick={() => closeModal()}
               />
             </header>
             <div>
@@ -97,13 +104,13 @@ const Menu = ({ restaurante }: Props) => {
                 <h4>{ModalMenuName}</h4>
                 <p>{ModalMenuDescription}</p>
                 <p>Serve: {ModalMenuServe}</p>
-                <button type='button' className="botton" onClick={() => {addToCart();setModalIsOpen(false)}}>
+                <button type='button' className="botton" onClick={() => {addToCart()}}>
                   Adicionar ao carrinho - R${(ModalMenuPrice).toFixed(2).replace('.', ',')}
                 </button>
               </div>
             </div>
           </ModalContent>
-          <div className="overlay" onClick={() => setModalIsOpen(false)}></div>
+          <div className="overlay" onClick={() => closeModal()}></div>
         </Modal>
       </>
     )

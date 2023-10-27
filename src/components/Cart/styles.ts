@@ -3,6 +3,16 @@ import { breakpoints, cores } from '../../styles'
 
 import dump from '../../assets/images/lixeira-de-reciclagem.png'
 
+export const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+`
+
 export const CartContainer = styled.div`
     position: fixed;
     top: 0;
@@ -18,23 +28,13 @@ export const CartContainer = styled.div`
     }
 `
 
-export const Overlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.7;
-`
-
 export const Sidebar = styled.aside`
-    z-index: 1;
     background-color: ${cores.vermelha};
+    z-index: 1;
     color: ${cores.branca};
     padding: 32px 8px 0px 8px;
     max-width: 360px;
-    width: 360px;
+    width: 100%;
 
     @media (max-width: ${breakpoints.tablet}) {
         max-width: 320px;
@@ -62,43 +62,46 @@ export const Sidebar = styled.aside`
 `
 
 export const CartItem = styled.li`
-    display: flex;
     background-color: ${cores.branca};
     padding: 8px;
     margin-bottom: 16px;
-
-    img {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-    }
-
+    
     div {
+        display: flex;
+        position: relative;
         margin-left: 8px;
         color: ${cores.vermelha};
 
-        h3 {
-            font-size: 18px;
-            margin-bottom: 16px;
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
         }
 
-        span {
-            font-size: 14px;
+        div {
+            display: block;
+            width: 100%;/
+
+            h3 {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+    
+            span {
+                font-size: 14px;
+            }
+
+            button {
+                position: absolute;
+                background-image: url(${dump});
+                background-color: transparent;
+                border: 0;
+                bottom: 0;
+                right: 0;
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+            }
         }
-    }
-`
-
-export const Dump = styled.div`
-    position: relative;
-
-    button {
-        background-image: url(${dump});
-        background-color: transparent;
-        border: 0;
-        position: absolute;
-        bottom: 0;
-        margin-left: 84px;
-        width: 16px;
-        height: 16px;
     }
 `

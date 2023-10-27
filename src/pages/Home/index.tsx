@@ -3,6 +3,15 @@ import Header from '../../components/Header'
 
 import { useGetRestaurantsQuery } from '../../services/api'
 
+export type CardapioItem = {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
 export type Restaurante = {
   id: number
   titulo: string
@@ -11,16 +20,7 @@ export type Restaurante = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: [
-    {
-      foto: string
-      preco: number
-      id: number
-      nome: string
-      descricao: string
-      porcao: string
-    }
-  ]
+  cardapio: CardapioItem[]
 }
 
 const Home = () => {

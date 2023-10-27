@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Imagem = styled.div`
   position: relative;
@@ -8,6 +8,10 @@ export const Imagem = styled.div`
 
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  } 
 
   &::after {
     position: absolute;
@@ -21,6 +25,7 @@ export const Imagem = styled.div`
   }
 
   .container {
+    z-index: 1;
     position: relative;
     padding-top: 24px;
     padding-bottom: 32px;
@@ -29,7 +34,6 @@ export const Imagem = styled.div`
     height: 100%;
     justify-content: space-between;
     color: ${cores.branca};
-    z-index: 1;
 
     h1 {
       font-weight: normal;
