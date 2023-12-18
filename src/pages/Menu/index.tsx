@@ -44,18 +44,18 @@ const Menu = () => {
   }
   
   if (menu) {
-    const getDescricao = (descricao: string) => {
-      if (descricao.length > 130) {
-        return descricao.slice(0, 120) + '...'
+    const getDescription = (text: string) => {
+      if (text.length > 130) {
+        return text.slice(0, 120) + '...'
       }
-      return descricao
+      return text
     }
     
     const menuItems = menu.cardapio.map((restaurantes) => (
       <div key={restaurantes.id}>
         <img src={restaurantes.foto} alt={restaurantes.nome} />
         <h1>{restaurantes.nome}</h1>
-        <p>{getDescricao(restaurantes.descricao)}</p>
+        <p>{getDescription(restaurantes.descricao)}</p>
         <ButtonContainer
           type="button"
           title="adicionar ao carrinho"

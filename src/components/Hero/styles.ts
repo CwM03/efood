@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
-export const Imagem = styled.div`
+export const Image = styled.div`
   position: relative;
   width: 100%;
   height: 280px;
@@ -33,7 +33,7 @@ export const Imagem = styled.div`
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    color: ${cores.branca};
+    color: ${colors.white};
 
     h1 {
       font-weight: normal;

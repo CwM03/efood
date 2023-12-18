@@ -17,7 +17,7 @@ export const Logo = styled.div`
   padding-top: 40px;
 `
 
-export const RedesSociais = styled.div`
+export const SocialMidia = styled.div`
   margin-top: 32px;
   margin-bottom: 40px;
 

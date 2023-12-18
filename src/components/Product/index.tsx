@@ -1,6 +1,6 @@
 import Tag from '../Tag'
 
-import { Card, Titulo, Descricao, Note, Infos, SaibaMais } from './styles'
+import * as S from './styles'
 
 import star from '../../assets/images/star.png'
 import { ButtonLink } from '../Button/styles'
@@ -24,53 +24,53 @@ const Product = ({
   descricao,
   capa
 }: Props) => {
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 95) {
-      return descricao.slice(0, 92) + '...'
+  const getDescription = (text: string) => {
+    if (text.length > 95) {
+      return text.slice(0, 92) + '...'
     }
-    return descricao
+    return text
   }
 
   if (destacado === true) {
     return (
-      <Card>
+      <S.Card>
         <img src={capa} alt={titulo} />
-        <Infos>
+        <S.Infos>
           <Tag>Destaque da semana</Tag>
           <Tag>{(tipo).charAt(0).toUpperCase() + (tipo).slice(1).toLowerCase()}</Tag>
-        </Infos>
+        </S.Infos>
         <div>
-          <Titulo>{titulo}</Titulo>
-          <Note>
+          <S.Title>{titulo}</S.Title>
+          <S.Note>
             {avaliacao}
             <img src={star} alt="Estrela" />
-          </Note>
+          </S.Note>
         </div>
-        <Descricao>{getDescricao(descricao)}</Descricao>
-        <SaibaMais>
+        <S.Description>{getDescription(descricao)}</S.Description>
+        <S.KnowMore>
           <ButtonLink to={`/menus/${id}`}>Saiba mais</ButtonLink>
-        </SaibaMais>
-      </Card>
+        </S.KnowMore>
+      </S.Card>
     )
   } else {
     return (
-      <Card>
+      <S.Card>
         <img src={capa} alt={titulo} />
-        <Infos>
+        <S.Infos>
           <Tag>{(tipo).charAt(0).toUpperCase() + (tipo).slice(1).toLowerCase()}</Tag>
-        </Infos>
+        </S.Infos>
         <div>
-          <Titulo>{titulo}</Titulo>
-          <Note>
+          <S.Title>{titulo}</S.Title>
+          <S.Note>
             {avaliacao}
             <img src={star} alt="Estrela" />
-          </Note>
+          </S.Note>
         </div>
-        <Descricao>{getDescricao(descricao)}</Descricao>
-        <SaibaMais>
+        <S.Description>{getDescription(descricao)}</S.Description>
+        <S.KnowMore>
           <ButtonLink to={`/menus/${id}`}>Saiba mais</ButtonLink>
-        </SaibaMais>
-      </Card>
+        </S.KnowMore>
+      </S.Card>
     )
   }
 }

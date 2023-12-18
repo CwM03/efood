@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Modal = styled.div`
   position: fixed;
@@ -27,8 +27,8 @@ export const Modal = styled.div`
 `
 
 export const ModalContent = styled.div`
-  background-color: ${cores.vermelha};
-  color: ${cores.branca};
+  background-color: ${colors.red};
+  color: ${colors.white};
   postion: relative;
   max-width: 1024px;
   z-index: 1;
@@ -85,8 +85,8 @@ export const ModalContent = styled.div`
   }
 
   .botton {
-    background-color: ${cores.branca};
-    color: ${cores.vermelha};
+    background-color: ${colors.white};
+    color: ${colors.red};
     font-size: 14px;
     font-weight: bold;
     border: 0;

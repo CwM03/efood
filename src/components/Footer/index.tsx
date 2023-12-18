@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BgFooter, Logo, RedesSociais } from './styles'
+import * as S from './styles'
 
 import logo from '../../assets/images/logo.png'
 import Facebook from '../../assets/images/facebook.png'
@@ -7,18 +7,18 @@ import Instagram from '../../assets/images/instagram.png'
 import X from '../../assets/images/x.png'
 
 const Footer = () => (
-  <BgFooter>
+  <S.BgFooter>
     <div className="container">
-      <Logo>
+      <S.Logo>
         <Link to="/">
           <img src={logo} alt="eFood" />
         </Link>
-      </Logo>
-      <RedesSociais>
-        <img src={Facebook} alt="Facebook" />
-        <img src={Instagram} alt="Instagram" />
-        <img src={X} alt="X" />
-      </RedesSociais>
+      </S.Logo>
+      <S.SocialMidia>
+        <img title='Visite nosso FaceBook' src={Facebook} alt="Facebook" />
+        <img title='Visite nosso Instagram' src={Instagram} alt="Instagram" />
+        <img title='Visite nosso X' src={X} alt="X" />
+      </S.SocialMidia>
       <p>
         A eFood é uma plataforma para divulgação de estabelecimentos, a
         responsabilidade pela entrega,
@@ -26,7 +26,7 @@ const Footer = () => (
         qualidade dos produtos é toda do estabelecimento contratado.
       </p>
     </div>
-  </BgFooter>
+  </S.BgFooter>
 )
 
 export default Footer

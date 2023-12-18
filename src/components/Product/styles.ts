@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
 export const Card = styled.div`
-  background-color: ${cores.branca};
-  border: 1px solid ${cores.vermelha};
+  background-color: ${colors.white};
+  border: 1px solid ${colors.red};
   border-top: 0px;
-  color: ${cores.vermelha};
+  color: ${colors.red};
   position: relative;
   margin-bottom: 48px;
 
@@ -40,7 +40,7 @@ export const Card = styled.div`
   }
 `
 
-export const Titulo = styled.h3`
+export const Title = styled.h3`
   font-size: 18px;
   font-weight: bold;
   padding: 0px 8px;
@@ -59,7 +59,7 @@ export const Note = styled.h3`
   }
 `
 
-export const Descricao = styled.p`
+export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
   display: block;
@@ -72,7 +72,7 @@ export const Infos = styled.div`
   right: 8px;
 `
 
-export const SaibaMais = styled.button`
+export const KnowMore = styled.button`
   margin: 16px 8px 8px 8px;
   border: 0px;
 `

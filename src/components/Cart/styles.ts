@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 import dump from '../../assets/images/lixeira-de-reciclagem.png'
 
@@ -29,9 +29,9 @@ export const CartContainer = styled.div`
 `
 
 export const Sidebar = styled.aside`
-    background-color: ${cores.vermelha};
+    background-color: ${colors.red};
     z-index: 1;
-    color: ${cores.branca};
+    color: ${colors.white};
     padding: 32px 8px 0px 8px;
     max-width: 360px;
     width: 100%;
@@ -52,17 +52,44 @@ export const Sidebar = styled.aside`
         }
     }
 
-    .botton {
-        background-color: ${cores.branca};
-        color: ${cores.vermelha};
-        display: flex;
-        justify-content: center;
+    .button-primary {
+        display: block;
+        background-color: ${colors.white};
+        color: ${colors.red};
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px 6px;
+        text-decoration: none;
+        border: 0;
+        text-align: center;
         width: 100%;
+        margin-top: 24px;
+        margin-bottom: 8px;
+    }
+
+    .button-secondary {
+        display: block;
+        background-color: ${colors.white};
+        color: ${colors.red};
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px 6px;
+        text-decoration: none;
+        border: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .empty-text {
+        font-size: 14px;
+        line-height: 22px;
+        color: ${colors.white};
+        text-align: center;
     }
 `
 
 export const CartItem = styled.li`
-    background-color: ${cores.branca};
+    background-color: ${colors.white};
     padding: 8px;
     margin-bottom: 16px;
     
@@ -70,7 +97,7 @@ export const CartItem = styled.li`
         display: flex;
         position: relative;
         margin-left: 8px;
-        color: ${cores.vermelha};
+        color: ${colors.red};
 
         img {
             width: 80px;
@@ -105,3 +132,28 @@ export const CartItem = styled.li`
         }
     }
 `
+
+export const Form = styled.form`
+
+    h2 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+
+    div label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    input {
+        border: 2px solid transparent;
+        border-radius: 2px;
+        padding: 8px;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+`
+
+

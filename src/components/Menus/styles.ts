@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Container = styled.div`
   padding: 80px 0 88px 0;
@@ -35,9 +35,9 @@ export const Item = styled.ul`
   }
 
   li {
-    background-color: ${cores.vermelha};
-    border: 1px solid ${cores.vermelha};
-    color: ${cores.branca};
+    background-color: ${colors.red};
+    border: 1px solid ${colors.red};
+    color: ${colors.white};
   
     img {
       width: 300px;
@@ -57,8 +57,8 @@ export const Item = styled.ul`
     }
   
     .botton {
-      background-color: ${cores.branca};
-      color: ${cores.vermelha};
+      background-color: ${colors.white};
+      color: ${colors.red};
       padding: 8px;
       display: flex;
       justify-content: center;
